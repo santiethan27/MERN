@@ -1,0 +1,211 @@
+/* ESTILOS GENERALES */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container{
+    width: 80%;
+    margin: auto;
+}
+
+/*BARRA DE NAVEGACION*/
+nav .container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+nav .brand, nav .buttons{
+    display: flex;
+    align-items: center;
+}
+nav .brand{
+    width: 250px;
+    flex-wrap: wrap;
+}
+nav .brand img{
+    width: 80px;
+    animation: rotate 30s linear infinite;
+}
+nav .brand span{
+    font-weight: 100;
+}
+nav .buttons{
+    gap: 30px;
+    flex-wrap: wrap;
+}
+nav .buttons a{
+    text-decoration: none;
+    color: rgb(24, 24, 24);
+}
+nav .buttons a:hover{
+    color: lightseagreen;
+}
+
+header article{
+    height: 300px;
+    width: 100%;
+    background-color: lightskyblue;
+}
+header article .container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+header article p{
+    color:white;
+    font-size: 35px;
+    text-align: center;
+}
+header article a{
+    display: inline-block;
+    padding: 10px;
+    width: 150px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px 2px black;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+}
+/*ARTICULOS*/
+.main{
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+.main .articulos{
+    width: 70%;
+}
+.main .articulos h2{
+    text-align: center;
+    font-size: 40px;
+    padding-bottom: 30px;
+}
+.main .cElements{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.main .articulo{
+    display: flex;
+    gap: 10px;
+    border-top: 2px rgba(220, 220, 220, .5) solid;
+    padding-top: 20px;
+}
+.main .articulo .img{
+    width: 100px;
+    height: 100px;
+}
+.main .articulo .img img{
+    width: 100%;
+    height: 100%;
+}
+
+.main .aside .cont{
+    background-color: #f2f2f2f2;
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+}
+.main .aside .cont h4{
+    padding: 10px;
+    border-bottom: 2px solid gray;
+    margin-bottom: 10px;
+}
+.main .aside .cont button{
+    width: 150px;
+    height: 40px;
+    background: rgb(51, 240, 51);
+    color: white;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+.main .aside .cont input{
+    height: 30px;
+    width: 100%;
+    margin: 10px 0;
+}
+/*FOOTER*/
+footer{
+    width: 100%;
+    min-height: 100px;
+    line-height: 100px;
+    text-align: center;
+    background-color: rgba(119, 136, 153, .2); 
+    margin-top: 10px;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg); /* Gira el logotipo 360 grados */
+    }
+}
+
+/*FORMULARIO*/
+.formulario{
+    width: 100%;
+    border-top: 2px solid rgb(42, 44, 44);
+    padding: 10px;
+}
+.formulario form{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+}
+.formulario form input{
+    height: 40px;
+}
+.formulario form textarea{
+    height: 100px;
+}
+.formulario .inputs{
+    display: flex;
+    align-items: center;
+    gap: 10px   ;
+}
+@media screen and (max-width:800px) {
+    nav .container{
+        justify-content: center;
+    }
+    .main .aside{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .main .articulos{
+        width: 100%;
+    }
+    .main .aside .cont{
+        width: 90%;
+    }
+}
+@media screen and (max-width:600px){
+    .main{
+        flex-direction: column;
+    }
+    .main .aside .cont{
+        width: 50%;
+    }
+    header article p{
+        color:white;
+        font-size: 20px;
+    }
+}
+@media screen and (max-width:550px){
+    footer{
+        font-size: 10px;
+    }
+    header .buttons{
+        justify-content: center;
+    }
+}
