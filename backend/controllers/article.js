@@ -1,7 +1,9 @@
 'use strict'
 const validator = require('validator');
+const fs = require('fs');
+const path = require('path');
+
 const Article = require('../models/article');
-const article = require('../models/article');
 
 var controller = {
     save: (req, res) =>{
@@ -188,24 +190,43 @@ var controller = {
         var file_split = file_path.split('\\');
 
         //EN LINUX O MAC es: file_split = file_path.split('/');
-        file_name = file_split[-1];
+        file_name = file_split[file_split.length - 1];
         var file_extension_split = file_name.split('\.');
         var file_ext = file_extension_split[1];
 
         //conprobar la extension, solo imagenes, si no es validad borrar fichero
         if(file_ext != 'png' && file_ext != 'jpg' && file_ext != 'jpeg' && file_ext != 'gif'){
             //borrar el archivo subido
+            fs.unlink(file_path).catch((err) =>{
+                return res.status(404).send({
+                    status: 'Error',
+                    message: 'La extension de la imagen no es valida'
+                });
+            });
         }else{
-            
+            const articleId = req.params.id;
+            //buscar el articulo, asignarle el nombre y actualizarlo
+            Article.findOneAndUpdate({_id:articleId}, {image: file_name}, {new:true})
+            .then((updateArticle) =>{
+                if(!updateArticle){
+                    return res.status(404).send({
+                        status: 'Error',
+                        message: 'Ocurrio un error al guardar la imagen'
+                    });
+                }
+                return res.status(200).send({
+                    status: 'success',
+                    article: updateArticle
+                });
+            })
+            .catch((err) =>{
+                return res.status(500).send({
+                    status: 'Error',
+                    message: 'Error desde el servidor'
+                });
+            })
         }
-        //buscar el articulo, asignarle el nombre y actualizarlo
-        return res.status(200).send({
-            status: 'success',
-            fichero:req.files
-        });
     }
-
-
 };
 
 module.exports = controller;
